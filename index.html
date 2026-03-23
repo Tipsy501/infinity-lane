@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Lane Pty Ltd | Creative Talent & Marketing Agency</title>
+    <meta name="description" content="Infinity Lane is a Gaborone-based consultancy focused on communications, marketing, and brand activation.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS v4 CDN -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    
+    <style type="text/css">
+        @theme {
+            --font-sans: "Inter", sans-serif;
+            --font-display: "Syne", sans-serif;
+            --color-primary: #ffffff;
+            --color-secondary: #000000;
+            --color-accent: #f0f0f0;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            background-color: #000000;
+        }
+
+        .service-card:hover {
+            background-color: #ffffff;
+            color: #000000;
+            transform: translateY(-10px);
+        }
+
+        .service-card:hover p, .service-card:hover span {
+            color: #000000;
+            opacity: 0.8;
+        }
+
+        .hero-text {
+            line-height: 0.9;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #444;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #666;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Ensure high contrast for text on dark backgrounds */
+        .text-high-contrast {
+            color: #ffffff !important;
+            opacity: 1 !important;
+        }
+
+        /* Ensure high contrast for text on light backgrounds */
+        .text-dark-contrast {
+            color: #000000 !important;
+            opacity: 1 !important;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-black text-white">
+
+    <!-- Navigation -->
+    <nav id="main-nav" class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center transition-all duration-300 bg-transparent">
+        <a href="#" class="font-display text-2xl font-extrabold tracking-tighter uppercase text-white">Infinity Lane</a>
+        <div class="hidden md:flex space-x-10 text-xs font-bold uppercase tracking-[0.2em] text-white">
+            <a href="#about" class="nav-link relative">About</a>
+            <a href="#services" class="nav-link relative">Services</a>
+            <a href="#gallery" class="nav-link relative">Work</a>
+            <a href="#contact" class="nav-link relative">Contact</a>
+        </div>
+        <button id="menu-toggle" class="md:hidden text-white p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black z-[60] flex flex-col items-center justify-center space-y-10 text-4xl font-display uppercase tracking-tighter hidden">
+        <button id="menu-close" class="absolute top-8 right-8 text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"></line><line x1="6" x2="18" y1="6" y2="18"></line></svg>
+        </button>
+        <a href="#about" class="mobile-link text-white hover:opacity-50 transition-opacity">About</a>
+        <a href="#services" class="mobile-link text-white hover:opacity-50 transition-opacity">Services</a>
+        <a href="#gallery" class="mobile-link text-white hover:opacity-50 transition-opacity">Work</a>
+        <a href="#contact" class="mobile-link text-white hover:opacity-50 transition-opacity">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex flex-col justify-center px-6 md:px-12 pt-20 bg-black">
+        <div class="max-w-7xl mx-auto w-full relative z-10">
+            <p class="text-sm md:text-base uppercase font-bold tracking-[0.4em] mb-8 text-white opacity-70">Creative Talent | Marketing | Events</p>
+            <h1 class="font-display text-6xl md:text-[9vw] hero-text font-extrabold uppercase mb-10 leading-none text-white">
+                Give Your Brand <br>
+                <span class="text-transparent" style="-webkit-text-stroke: 1.5px white;">A Voice That</span> <br>
+                Stands Out
+            </h1>
+            <p class="text-xl md:text-3xl max-w-3xl font-light leading-snug text-white opacity-90 mb-14">
+                Infinity Lane helps businesses connect with audiences through talent, events, and creative marketing solutions.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6">
+                <a href="https://wa.me/26771475755" target="_blank" class="inline-block bg-white text-black px-12 py-6 font-black uppercase tracking-widest hover:bg-neutral-200 transition-all text-center shadow-xl">
+                    Book via WhatsApp
+                </a>
+                <a href="#services" class="inline-block border-2 border-white px-12 py-6 font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all text-center">
+                    Our Services
+                </a>
+            </div>
+        </div>
+        
+        <!-- Subtle Background Element -->
+        <div class="absolute bottom-0 right-0 opacity-[0.03] select-none pointer-events-none">
+            <span class="font-display text-[40vw] leading-none">IL</span>
+        </div>
+    </section>
+
+    <!-- About Section (WHO WE ARE) - FIXED CONTRAST -->
+    <section id="about" class="py-32 md:py-48 px-6 md:px-12 bg-neutral-950 border-y border-white/5">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-start">
+            <div class="reveal">
+                <h2 class="font-display text-5xl md:text-7xl uppercase font-black mb-10 text-white leading-tight">Who <br>We Are</h2>
+                <div class="w-32 h-2 bg-white mb-10"></div>
+            </div>
+            <div class="reveal">
+                <!-- Explicitly high contrast text -->
+                <p class="text-2xl md:text-3xl font-medium leading-relaxed text-white mb-10">
+                    Infinity Lane is a Gaborone-based consultancy focused on communications, marketing, and brand activation. We help businesses express their identity through events, talent, and creative campaigns.
+                </p>
+                <p class="text-lg md:text-xl leading-relaxed text-white opacity-80">
+                    Based in the heart of Botswana, we bring a deep understanding of the local market combined with international standards of creative execution. Our mission is to bridge the gap between brands and people through authentic engagement.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-32 md:py-48 px-6 md:px-12 bg-black">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-24 reveal">
+                <h2 class="font-display text-6xl md:text-9xl uppercase font-black leading-none text-white">Services</h2>
+                <p class="text-sm font-bold uppercase tracking-[0.3em] text-white opacity-60 mt-6 md:mt-0">Tailored Agency Solutions</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/20 border border-white/20">
+                <!-- Service 1 -->
+                <div class="service-card p-12 reveal">
+                    <span class="text-xs font-bold tracking-widest text-white opacity-50 mb-8 block uppercase">01 / Staffing</span>
+                    <h3 class="text-3xl font-display uppercase font-bold mb-6 text-white">Event Staffing</h3>
+                    <p class="text-lg text-white opacity-70 font-light leading-relaxed">Professional registration, exhibition support, and promotional staff for events of all scales.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="service-card p-12 reveal">
+                    <span class="text-xs font-bold tracking-widest text-white opacity-50 mb-8 block uppercase">02 / Activation</span>
+                    <h3 class="text-3xl font-display uppercase font-bold mb-6 text-white">Brand Activation</h3>
+                    <p class="text-lg text-white opacity-70 font-light leading-relaxed">Bringing your brand to life through immersive promotions and direct audience engagement.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="service-card p-12 reveal">
+                    <span class="text-xs font-bold tracking-widest text-white opacity-50 mb-8 block uppercase">03 / Talent</span>
+                    <h3 class="text-3xl font-display uppercase font-bold mb-6 text-white">Talent & Hostess</h3>
+                    <p class="text-lg text-white opacity-70 font-light leading-relaxed">Premium hostess services and talent management for corporate and private functions.</p>
+                </div>
+                <!-- Service 4 -->
+                <div class="service-card p-12 reveal">
+                    <span class="text-xs font-bold tracking-widest text-white opacity-50 mb-8 block uppercase">04 / Virtual</span>
+                    <h3 class="text-3xl font-display uppercase font-bold mb-6 text-white">Virtual Assistants</h3>
+                    <p class="text-lg text-white opacity-70 font-light leading-relaxed">Specialized marketing and administrative support to keep your business running smoothly.</p>
+                </div>
+                <!-- Service 5 -->
+                <div class="service-card p-12 reveal">
+                    <span class="text-xs font-bold tracking-widest text-white opacity-50 mb-8 block uppercase">05 / Campaigns</span>
+                    <h3 class="text-3xl font-display uppercase font-bold mb-6 text-white">Marketing & Ads</h3>
+                    <p class="text-lg text-white opacity-70 font-light leading-relaxed">Creative marketing and advertising campaigns designed to convert and build brand equity.</p>
+                </div>
+                <!-- Service 6 -->
+                <div class="service-card p-12 reveal">
+                    <span class="text-xs font-bold tracking-widest text-white opacity-50 mb-8 block uppercase">06 / Retail</span>
+                    <h3 class="text-3xl font-display uppercase font-bold mb-6 text-white">Data & Promotions</h3>
+                    <p class="text-lg text-white opacity-70 font-light leading-relaxed">Strategic data capture and retail promotions to drive sales and understand your customers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us - LIGHT BACKGROUND, DARK TEXT -->
+    <section class="py-32 md:py-48 px-6 md:px-12 bg-white text-black">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-24 items-start">
+                <div class="reveal">
+                    <h2 class="font-display text-5xl md:text-8xl uppercase font-black mb-12 text-black leading-none">Why Us?</h2>
+                    <p class="text-2xl font-medium text-black opacity-80 mb-10">We don't just provide staff; we provide results. Our approach is built on four core pillars of excellence.</p>
+                </div>
+                <div class="grid sm:grid-cols-2 gap-12">
+                    <div class="reveal">
+                        <h4 class="text-xl font-black uppercase mb-4 text-black">Professional Staff</h4>
+                        <p class="text-lg text-black opacity-70 leading-relaxed">Every member of our team undergoes rigorous training to represent your brand with absolute professionalism.</p>
+                    </div>
+                    <div class="reveal">
+                        <h4 class="text-xl font-black uppercase mb-4 text-black">Scalable Solutions</h4>
+                        <p class="text-lg text-black opacity-70 leading-relaxed">From small boutique activations to national campaigns, we scale our resources to meet your specific needs.</p>
+                    </div>
+                    <div class="reveal">
+                        <h4 class="text-xl font-black uppercase mb-4 text-black">Local Insight</h4>
+                        <p class="text-lg text-black opacity-70 leading-relaxed">Deeply rooted in Gaborone, we understand the cultural nuances that make marketing effective in Botswana.</p>
+                    </div>
+                    <div class="reveal">
+                        <h4 class="text-xl font-black uppercase mb-4 text-black">Creative Edge</h4>
+                        <p class="text-lg text-black opacity-70 leading-relaxed">We think outside the box to ensure your brand activation is memorable and high-converting.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-32 md:py-48 px-6 md:px-12 bg-black">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 reveal">
+                <h2 class="font-display text-5xl md:text-7xl uppercase font-black text-white">Our Work</h2>
+                <p class="text-sm font-bold uppercase tracking-widest text-white opacity-50 mt-4 md:mt-0">Visual Showcase</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="aspect-square bg-neutral-900 overflow-hidden reveal border border-white/10">
+                    <img src="https://picsum.photos/seed/event1/800/800" alt="Event Activation" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" referrerPolicy="no-referrer">
+                </div>
+                <div class="aspect-[3/4] md:row-span-2 bg-neutral-900 overflow-hidden reveal border border-white/10">
+                    <img src="https://picsum.photos/seed/talent1/800/1200" alt="Talent Services" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" referrerPolicy="no-referrer">
+                </div>
+                <div class="aspect-square bg-neutral-900 overflow-hidden reveal border border-white/10">
+                    <img src="https://picsum.photos/seed/promo1/800/800" alt="Brand Promotion" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" referrerPolicy="no-referrer">
+                </div>
+                <div class="aspect-square bg-neutral-900 overflow-hidden reveal border border-white/10">
+                    <img src="https://picsum.photos/seed/staff1/800/800" alt="Professional Staff" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" referrerPolicy="no-referrer">
+                </div>
+                <div class="aspect-square bg-neutral-900 overflow-hidden reveal border border-white/10">
+                    <img src="https://picsum.photos/seed/retail1/800/800" alt="Retail Promotion" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" referrerPolicy="no-referrer">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 md:py-48 px-6 md:px-12 bg-neutral-950">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-24">
+                <div class="reveal">
+                    <h2 class="font-display text-6xl md:text-9xl uppercase font-black mb-12 text-white leading-none">Let's <br>Talk</h2>
+                    <p class="text-2xl text-white opacity-80 mb-16 leading-relaxed">Ready to elevate your brand? Get in touch with our team in Gaborone today.</p>
+                    
+                    <div class="grid sm:grid-cols-2 gap-12">
+                        <div>
+                            <p class="text-xs uppercase font-black tracking-[0.3em] text-white opacity-40 mb-4">Visit Us</p>
+                            <p class="text-xl font-medium text-white">Phase 2, Plot 18309, <br>Gaborone, Botswana</p>
+                        </div>
+                        <div>
+                            <p class="text-xs uppercase font-black tracking-[0.3em] text-white opacity-40 mb-4">Call Us</p>
+                            <a href="tel:+26771475755" class="text-xl font-medium text-white hover:underline">+267 71 475 755</a>
+                        </div>
+                        <div>
+                            <p class="text-xs uppercase font-black tracking-[0.3em] text-white opacity-40 mb-4">Business Hours</p>
+                            <p class="text-xl font-medium text-white">Mon – Sun, 9am – 8pm</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white text-black p-10 md:p-20 flex flex-col justify-center reveal shadow-2xl">
+                    <h3 class="font-display text-4xl uppercase font-black mb-8 text-black">Start a Project</h3>
+                    <p class="text-lg mb-12 text-black opacity-80 leading-relaxed">The fastest way to reach us is via WhatsApp. Our team is ready to assist you with your requirements immediately.</p>
+                    <a href="https://wa.me/26771475755" target="_blank" class="flex items-center justify-center space-x-4 bg-black text-white py-8 px-10 font-black uppercase tracking-widest hover:bg-neutral-800 transition-all transform hover:scale-[1.02]">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        <span>WhatsApp Us Now</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 px-6 md:px-12 bg-black border-t border-white/10">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center space-y-12 md:space-y-0">
+            <div>
+                <p class="font-display text-3xl font-black uppercase tracking-tighter text-white">Infinity Lane Pty Ltd</p>
+                <p class="text-sm font-medium text-white opacity-40 mt-4 tracking-widest uppercase">Creative Talent | Marketing | Events</p>
+            </div>
+            <div class="flex flex-wrap gap-10 text-xs font-black uppercase tracking-[0.2em] text-white">
+                <a href="#about" class="hover:opacity-50 transition-opacity">About</a>
+                <a href="#services" class="hover:opacity-50 transition-opacity">Services</a>
+                <a href="#gallery" class="hover:opacity-50 transition-opacity">Work</a>
+                <a href="#contact" class="hover:opacity-50 transition-opacity">Contact</a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-[0.3em] text-white opacity-30">
+            <p>© 2026 Infinity Lane Pty Ltd. All rights reserved.</p>
+            <p class="mt-4 md:mt-0">Gaborone, Botswana</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/26771475755" target="_blank" class="whatsapp-float bg-green-600 text-white p-5 rounded-full shadow-2xl md:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+    </a>
+
+    <script>
+        // Reveal on scroll
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        // Navbar scroll effect
+        function handleNavScroll() {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-black/90', 'backdrop-blur-md', 'py-4', 'shadow-2xl');
+                nav.classList.remove('py-6', 'bg-transparent');
+            } else {
+                nav.classList.remove('bg-black/90', 'backdrop-blur-md', 'py-4', 'shadow-2xl');
+                nav.classList.add('py-6', 'bg-transparent');
+            }
+        }
+
+        window.addEventListener("scroll", () => {
+            reveal();
+            handleNavScroll();
+        });
+
+        // Initial check
+        reveal();
+        handleNavScroll();
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        menuClose.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Smooth scroll for all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
